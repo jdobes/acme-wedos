@@ -1,0 +1,46 @@
+openapi: "3.0.0"
+
+info:
+  title: ACME Wedos
+  version: "0.1"
+
+paths:
+  /present:
+    post:
+      summary: present
+      description: present
+      operationId: acme_wedos.acme_wedos.present
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fqdn:
+                  type: string
+                value:
+                  type: string
+      responses:
+        200:
+          description: ok
+
+  /cleanup:
+    post:
+      summary: cleanup
+      description: cleanup
+      operationId: acme_wedos.acme_wedos.cleanup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fqdn:
+                  type: string
+                value:
+                  type: string
+      responses:
+        200:
+          description: ok
