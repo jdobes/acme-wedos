@@ -8,6 +8,7 @@ import os
 import sys
 
 import connexion
+import pytz
 import requests
 
 WAPI_USER = os.getenv("WAPI_USER", "").strip()
@@ -32,7 +33,7 @@ def do_command(action, fqdn, value):
         return
 
     wapi_pass_hash = hashlib.sha1(WAPI_PASS.encode("UTF-8")).hexdigest()
-    hour = datetime.datetime.now().hour
+    hour = datetime.datetime.now(tz=pytz.timezone("Europe/Prague")).hour
     auth = hashlib.sha1(f"{WAPI_USER}{wapi_pass_hash}{hour}".encode("UTF-8")).hexdigest()
     request = {"request": {"user": WAPI_USER, "auth": auth}}
 
