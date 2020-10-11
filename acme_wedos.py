@@ -10,8 +10,8 @@ import sys
 import connexion
 import requests
 
-WAPI_USER = os.getenv("WAPI_USER", "")
-WAPI_PASS = os.getenv("WAPI_PASS", "")
+WAPI_USER = os.getenv("WAPI_USER", "").strip()
+WAPI_PASS = os.getenv("WAPI_PASS", "").strip()
 WAPI_URL = "https://api.wedos.com/wapi/json"
 
 LOGGER = logging.getLogger(__name__)
