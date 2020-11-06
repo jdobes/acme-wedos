@@ -34,7 +34,7 @@ def do_command(action, fqdn, value):
 
     wapi_pass_hash = hashlib.sha1(WAPI_PASS.encode("UTF-8")).hexdigest()
     hour = datetime.datetime.now(tz=pytz.timezone("Europe/Prague")).hour
-    auth = hashlib.sha1(f"{WAPI_USER}{wapi_pass_hash}{hour}".encode("UTF-8")).hexdigest()
+    auth = hashlib.sha1(f"{WAPI_USER}{wapi_pass_hash}{hour:02d}".encode("UTF-8")).hexdigest()
     request = {"request": {"user": WAPI_USER, "auth": auth}}
 
     acme, domain = fqdn.split(".", 1)
