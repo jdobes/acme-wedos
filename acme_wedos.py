@@ -37,8 +37,10 @@ def do_command(action, fqdn, value):
     auth = hashlib.sha1(f"{WAPI_USER}{wapi_pass_hash}{hour:02d}".encode("UTF-8")).hexdigest()
     request = {"request": {"user": WAPI_USER, "auth": auth}}
 
-    acme, domain = fqdn.split(".", 1)
-    domain = domain[:-1] if domain.endswith(".") else domain
+    fqdn = fqdn[:-1] if fqdn.endswith(".") else fqdn
+    parts = fqdn.split(".")
+    acme = ".".join(parts[:-2])
+    domain = ".".join(parts[-2:])
 
     if action == "present":
         request["request"]["command"] = "dns-row-add"
