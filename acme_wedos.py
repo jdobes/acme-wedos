@@ -11,6 +11,9 @@ import connexion
 import pytz
 import requests
 
+APP_USER = os.getenv("APP_USER", "").strip()
+APP_PASS = os.getenv("APP_PASS", "").strip()
+
 WAPI_USER = os.getenv("WAPI_USER", "").strip()
 WAPI_PASS = os.getenv("WAPI_PASS", "").strip()
 WAPI_URL = "https://api.wedos.com/wapi/json"
@@ -77,9 +80,16 @@ def cleanup():
     return 200
 
 
+def basic_auth(username, password):
+    if username == APP_USER and password == APP_PASS:
+        return {"user": username}
+    return None
+
+
 def main():
     logging.basicConfig(format="%(asctime)s:%(levelname)s:%(name)s:%(message)s")
-    app = connexion.FlaskApp(__name__, options={"openapi_spec_path": "/api/openapi.json"})
+    app = connexion.FlaskApp(__name__, options={"serve_spec": False,
+                                                "swagger_ui": False})
     app.add_api('openapi.spec.yml', validate_responses=True, strict_validation=True)
 
     @app.app.after_request
@@ -88,6 +98,10 @@ def main():
         response.headers["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers"
         response.headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
         return response
+
+    if not APP_USER or not APP_PASS:
+        LOGGER.error("APP_USER and APP_PASS can't be empty.")
+        sys.exit(1)
 
     app.run(host="0.0.0.0", port=8000)
 

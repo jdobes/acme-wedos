@@ -2,7 +2,7 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal
 
 ADD *.txt /acme_wedos/
 
-RUN microdnf install python3 shadow-utils && microdnf clean all && \
+RUN microdnf install python39 shadow-utils && microdnf clean all && \
     pip3 install -r /acme_wedos/requirements.txt && \
     rm -rf /root/.cache
 

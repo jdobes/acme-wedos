@@ -24,6 +24,8 @@ paths:
       responses:
         200:
           description: ok
+      security:
+        - basic: []
 
   /cleanup:
     post:
@@ -44,3 +46,11 @@ paths:
       responses:
         200:
           description: ok
+      security:
+        - basic: []
+components:
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      x-basicInfoFunc: acme_wedos.acme_wedos.basic_auth
