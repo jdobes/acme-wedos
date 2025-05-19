@@ -70,14 +70,14 @@ def present():
     data = connexion.request.get_json()
     LOGGER.info(f"present command: {data}")
     do_command("present", data["fqdn"], data["value"])
-    return 200
+    return data
 
 
 def cleanup():
     data = connexion.request.get_json()
     LOGGER.info(f"cleanup command: {data}")
     do_command("cleanup", data["fqdn"], data["value"])
-    return 200
+    return data
 
 
 def basic_auth(username, password):
