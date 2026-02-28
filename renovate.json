@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "matchCategories": ["docker", "ci"],
+      "groupName": "references",
+      "groupSlug": "references",
+      "pinDigests": true,
+      "automerge": true,
+      "automergeStrategy": "rebase",
+      "automergeType": "pr"
+    }
   ]
 }
