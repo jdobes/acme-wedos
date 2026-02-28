@@ -1,0 +1,9 @@
+[project]
+name = "acme-wedos"
+version = "1.0.0"
+readme = "README.md"
+requires-python = "~3.12"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+commit_author = "semantic-release <semantic-release>"
