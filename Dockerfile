@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi10/ubi-minimal:10.2-1779722607@sha256:6edd84087c7c05b9464de987d9a9bc210be1ec9c426aa6c5aaff39aa32f0bbc3
+FROM registry.access.redhat.com/ubi10/ubi-minimal:10.2-1779862102@sha256:7dc60d7777e010c50f5e041ff069112b379c3d5eef2823d20871c67cf663f10c
 
 ADD *.txt /acme_wedos/
 
